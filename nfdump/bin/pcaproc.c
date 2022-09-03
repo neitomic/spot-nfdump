@@ -792,6 +792,11 @@ pkt->vlans[pkt->vlan_count].pcp = (p[0] >> 5) & 7;
 			break;
 	}
 
+	if ( defragmented ) {
+		LogError("Defragmented buffer not freed for proto %u", proto);	
+		free(defragmented);
+		defragmented = NULL;
+	}
 
 } // End of ProcessPacket
 
